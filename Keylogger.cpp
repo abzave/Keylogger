@@ -1,3 +1,4 @@
+#define _WIN32_WINNT 0x0500		//Consola
 #include <iostream>
 #include <string>
 #include <map>
@@ -108,6 +109,9 @@ int main(int argc, char *argv[]){
     
     FILE *f;
     int count = 0;
+    
+    HWND hwnd = GetConsoleWindow();
+    ShowWindow(hwnd, 0);	//Ocultar consola
 	
 	while(true){
 		
