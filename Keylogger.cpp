@@ -14,7 +14,7 @@ using namespace std;
 
 /*
 Entrada: puntero ruta de tipo char
-Salida: void
+Salida: clave en el registro del sistema
 Funcionamiento: Crea una clave de registro para ejecutar el autoarranque del programa
 */
 void crearKey(char *ruta){	//Autoarranque
